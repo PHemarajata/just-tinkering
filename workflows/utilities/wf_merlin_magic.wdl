@@ -82,6 +82,7 @@ workflow merlin_magic {
     Int? tbprofiler_cov_frac_threshold
     String? tbprofiler_variant_caller
     String? tbprofiler_variant_calling_params
+    String? tbprofiler_additional_arguments
     Boolean tbprofiler_run_custom_db = false
     File? tbprofiler_custom_db
     Boolean tbprofiler_additional_outputs = false
@@ -282,7 +283,8 @@ workflow merlin_magic {
           min_depth = tbprofiler_min_depth,
           min_af = tbprofiler_min_af,
           min_af_pred = tbprofiler_min_af_pred,
-          cov_frac_threshold = tbprofiler_cov_frac_threshold
+          cov_frac_threshold = tbprofiler_cov_frac_threshold,
+          additional_arguments = tbprofiler_additional_arguments
       }
       if (tbprofiler_additional_outputs) {
         call tbp_parser_task.tbp_parser {

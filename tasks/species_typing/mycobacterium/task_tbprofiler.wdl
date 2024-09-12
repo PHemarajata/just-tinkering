@@ -11,6 +11,7 @@ task tbprofiler {
     String mapper = "bwa"
     String variant_caller = "freebayes"
     String? variant_calling_params
+    String? additional_arguments
     Int min_depth = 10
     Float min_af = 0.1
     Float min_af_pred = 0.1
@@ -70,6 +71,7 @@ task tbprofiler {
       --reporting_af ~{min_af_pred} \
       --coverage_fraction_threshold ~{cov_frac_threshold} \
       --csv --txt \
+      ~{additional_arguments} \
       $TBDB
 
     # Collate results
