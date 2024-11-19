@@ -15,6 +15,7 @@ task vadr {
     Int cpu = 2
     Int memory = 8
     Int disk_size = 100
+    Int boot_disk_size = 50
   }
   String out_base = basename(genome_fasta, '.fasta')
   command <<<
@@ -72,6 +73,7 @@ task vadr {
     memory: memory + " GB"
     disks: "local-disk " + disk_size + " SSD"
     disk: disk_size + " GB"
+    bootDiskSizeGb: boot_disk_size
     cpu: cpu
     dx_instance_type: "mem1_ssd1_v2_x2"
     maxRetries: 3
