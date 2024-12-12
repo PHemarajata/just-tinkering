@@ -126,10 +126,10 @@ task freyja_one_sample {
           coverage.write(line[1])
       if "lineages" in line[0]:
         with open("LINEAGES", 'wt') as lineages:
-          lineages.write(line[1])
+          lineages.write(line[1].replace(" ", ","))
       if "abundances" in line[0]:
         with open("ABUNDANCES", 'wt') as abundances:
-          abundances.write(line[1])
+          abundances.write(line[1].replace(" ", ","))
       if "resid" in line[0]:
         with open("RESID", 'wt') as resid:
           resid.write(line[1])
