@@ -11,7 +11,7 @@ task consensus {
     Int cpu = 8
     Int memory = 16
     Int disk_size = 100
-    String medaka_model = "r941_min_high_g360"
+    String medaka_model = "dna_r10.4.1_e8.2_400bps_sup@v5.0.0"
     String docker = "us-docker.pkg.dev/general-theiagen/staphb/artic-ncov2019-epi2me"
   }
   String primer_name = basename(primer_bed)
@@ -33,6 +33,21 @@ task consensus {
       cp "~{primer_bed}" ./primer-schemes/HIV/Vuser/HIV.scheme.bed
       scheme_name="HIV/Vuser"
     # Add other viruses here
+ if [[ ~{organism} == "RABV" ]]; then
+      # setup custom primer scheme (/V is required by Artic)
+      mkdir -p ./primer-schemes/RABV/Vuser
+
+      ## set reference genome
+      ref_genome="~{reference_genome}"
+
+      head -n1 "${ref_genome}" | sed 's/>//' | tee REFERENCE_GENOME
+      cp "${ref_genome}" ./primer-schemes/RABV/Vuser/RABV.reference.fasta
+
+      ## set primers
+      #cp ~{primer_bed} ./primer-schemes/RABV/Vuser/RABV.scheme.bed
+      #p_bed="~{primer_bed}"
+      cp "~{primer_bed}" ./primer-schemes/RABV/Vuser/RABV.scheme.bed
+      scheme_name="RABV/Vuser"
     # Default is SARS-CoV-2
     else
       # setup custom primer scheme (/V is required by Artic)
