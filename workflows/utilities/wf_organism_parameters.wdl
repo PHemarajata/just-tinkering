@@ -89,6 +89,53 @@ workflow organism_parameters {
     Float mpox_narrow_bandwidth = 0.1666667
     Float mpox_proportion_wide = 0.0
   }  
+if (organism == "MPXV" || organism == "mpox" || organism == "monkeypox" || organism == "Monkeypox virus" || organism == "Mpox") {
+    String mpox_org_name = "MPXV"
+    String mpox_reference_genome = "gs://theiagen-public-files/terra/mpxv-files/MPXV.MT903345.reference.fasta"
+    String mpox_gene_locations_bed = "gs://theiagen-public-files/terra/mpxv-files/mpox_gene_locations.bed"
+    String mpox_nextclade_ds_tag = "2024-11-19--14-18-53Z"
+    String mpox_nextclade_ds_name = "nextstrain/mpox/lineage-b.1"
+    String mpox_kraken_target_organism = "Monkeypox virus"
+    String mpox_primer_bed_file = "gs://theiagen-public-files/terra/mpxv-files/MPXV.primer.bed"
+    String mpox_reference_gff_file = "gs://theiagen-public-files/terra/mpxv-files/Mpox-MT903345.1.reference.gff3"
+    String mpox_vadr_options = "--glsearch -s -r --nomisc --mkey mpxv --r_lowsimok --r_lowsimxd 100 --r_lowsimxl 2000 --alt_pass discontn,dupregin --out_allfasta --minimap2 --s_overhang 150"
+    Int mpox_vadr_max_length = 210000
+    Int mpox_vadr_skip_length = 65480
+    Int mpox_vadr_memory = 8
+    Int mpox_genome_len = 197200
+
+    # augur options for mpxv
+    File mpox_lat_longs_tsv = "gs://theiagen-public-files-rp/terra/flu-references/lat_longs.tsv"
+    File mpox_clades_tsv = "gs://theiagen-public-files-rp/terra/augur-mpox-references/mpox_clades.tsv"
+    File mpox_reference_gbk = "gs://theiagen-public-files-rp/terra/augur-mpox-references/NC_063383.1_reference.gb"
+    File mpox_auspice_config = "gs://theiagen-public-files-rp/terra/augur-mpox-references/mpox_auspice_config_mpxv.json"
+    Int mpox_min_num_unambig = 150000
+    # inherited from flu defaults
+    Float mpox_min_date = 2020.0
+    Int mpox_pivot_interval = 1
+    Float mpox_narrow_bandwidth = 0.1666667
+    Float mpox_proportion_wide = 0.0
+  } 
+if (organism == "RABV" || organism == "rabies" || organism == "Rabies" || organism == "Rabies virus" || organism == "RBV") {
+    String rabv_org_name = "RABV"
+    String rabv_reference_genome = "gs://fc-6d36476c-1841-4752-813e-faba8ac0a256/uploads/reference_materials/KC977995.1.fasta"
+    String rabv_gene_locations_bed = "gs://fc-6d36476c-1841-4752-813e-faba8ac0a256/uploads/reference_materials/KC977995.1.tsv"
+    String rabv_kraken_target_organism = "Lyssavirus rabies"
+    String rabv_primer_bed_file = "gs://fc-6d36476c-1841-4752-813e-faba8ac0a256/uploads/reference_materials/KC977995.1.bed"
+    String rabv_reference_gff_file = "gs://fc-6d36476c-1841-4752-813e-faba8ac0a256/uploads/reference_materials/KC977995.1.gff3"
+
+    # augur options for mpxv
+    #File rabv_lat_longs_tsv = "gs://theiagen-public-files-rp/terra/flu-references/lat_longs.tsv"
+    #File rabv_clades_tsv = "gs://theiagen-public-files-rp/terra/augur-mpox-references/mpox_clades.tsv"
+    #File rabv_reference_gbk = "gs://fc-6d36476c-1841-4752-813e-faba8ac0a256/uploads/reference_materials/KC977995.1.gb"
+    #File mpox_auspice_config = "gs://theiagen-public-files-rp/terra/augur-mpox-references/mpox_auspice_config_mpxv.json"
+    #Int mpox_min_num_unambig = 150000
+    # inherited from flu defaults
+    #Float mpox_min_date = 2020.0
+    #Int mpox_pivot_interval = 1
+    #Float mpox_narrow_bandwidth = 0.1666667
+    #Float mpox_proportion_wide = 0.0
+  }  
   if (organism == "WNV" || organism == "wnv" || organism == "West Nile virus") {
     String wnv_org_name = "WNV"
     String wnv_reference_genome = "gs://theiagen-public-files/terra/theiacov-files/WNV/NC_009942.1_wnv_L1.fasta"
