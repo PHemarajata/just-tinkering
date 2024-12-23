@@ -23,7 +23,7 @@ workflow theiacov_ont {
   input {
     String samplename
     File read1
-    String organism = "sars-cov-2" # options: "sars-cov-2", "HIV", "flu"
+    String organism = "sars-cov-2" # options: "sars-cov-2", "HIV", "flu", "RABV"
     # sequencing values
     String seq_method = "OXFORD_NANOPORE"
     File? primer_bed
@@ -76,6 +76,9 @@ workflow theiacov_ont {
   }
   if (organism_parameters.standardized_organism == "HIV") { # set HIV specific artic version
     String run_prefix = "artic_hiv"
+  }
+  if (organism_parameters.standardized_organism == "RABV") { # set HIV specific artic version
+    String run_prefix = "artic_rabv"
   }
   call screen.check_reads_se as raw_check_reads {
     input:
@@ -195,7 +198,7 @@ workflow theiacov_ont {
               docker = organism_parameters.pangolin_docker
           }
         }  
-        if (organism_parameters.standardized_organism == "sars-cov-2" || organism_parameters.standardized_organism == "MPXV" || defined(reference_gene_locations_bed)) {
+        if (organism_parameters.standardized_organism == "sars-cov-2" || organism_parameters.standardized_organism == "MPXV" || organism_parameters.standardized_organism == "RABV" || defined(reference_gene_locations_bed)) {
           # tasks specific to either sars-cov-2, MPXV, or any organism with a user-supplied reference gene locations bed file
           call gene_coverage_task.gene_coverage {
             input:
