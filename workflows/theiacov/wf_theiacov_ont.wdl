@@ -16,7 +16,7 @@ import "../utilities/wf_flu_track.wdl" as run_flu_track
 import "../utilities/wf_organism_parameters.wdl" as set_organism_defaults
 import "../utilities/wf_read_QC_trim_ont.wdl" as read_qc_trim_workflow
 
-workflow theiacov_ont {
+workflow theiacov_ont_mod {
   meta {
     description: "Reference-based consensus calling for viral amplicon sequencing data generated on ONT NGS platforms."
   }
